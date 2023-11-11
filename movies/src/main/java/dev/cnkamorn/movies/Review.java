@@ -15,4 +15,9 @@ public class Review {
     @Id
     private ObjectId id;
     private String body;
+
+    //Generate only body because Id is already automatically generated
+    public Review(String body){
+        this.body = body;
+    }
 }

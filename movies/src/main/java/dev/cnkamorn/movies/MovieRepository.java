@@ -11,4 +11,7 @@ public interface MovieRepository extends MongoRepository<Movie,ObjectId> {//What
     Optional<Movie> getMovieByImdbId(String ImdbId); //getMovieByImdbId
 
     Optional<Movie> getMovieByTitle(String title);
+
+    Optional<Movie> deleteMovieByImdbId(String imdbdId);
+
 }

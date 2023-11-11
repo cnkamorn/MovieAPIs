@@ -4,13 +4,11 @@ import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.swing.text.html.Option;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -33,4 +31,13 @@ public class MovieController {
         return new ResponseEntity<Optional<Movie>>(movieService.movieByTitle(title),HttpStatus.OK);
     }
 
+    @DeleteMapping("/{imdbId}")
+    public ResponseEntity<Optional<Movie>> deleteMovie(@PathVariable String imdbId){
+        return new ResponseEntity<Optional<Movie>>(movieService.deleteAmovie(imdbId),HttpStatus.OK);
+    }
+
+    @PutMapping
+    public ResponseEntity<Optional<Movie>> updateMovieTitle(@RequestBody Map<String,String> payload) {
+        return new ResponseEntity<Optional<Movie>>(Optional.ofNullable(movieService.updateMovieTitle(payload.get("title"), payload.get("imdbId"))),HttpStatus.CREATED);
+    }
 }
